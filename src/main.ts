@@ -4,5 +4,6 @@ import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
+import './service/axios_demo'
 
 createApp(App).use(router).use(store).use(ElementPlus).mount('#app')
