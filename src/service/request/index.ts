@@ -8,13 +8,23 @@ class HYRequest {
   constructor(config: HYRequestConfig) {
     this.instance = axios.create(config)
     this.interceptors = config.interceptors
-    this.instance.interceptors?.request.use(
+    this.instance.interceptors.request.use(
       this.interceptors?.HYRequestInterceptor,
       this.interceptors?.HYRequestInterceptorCatch
     )
-    this.instance.interceptors?.response.use(
+    this.instance.interceptors.response.use(
       this.interceptors?.HYResponseInterceptor,
       this.interceptors?.HYResponseInterceptorCatch
+    )
+    this.instance.interceptors.request.use(
+      (config) => {
+        console.log('所有实例请求的拦截！')
+        return config
+      },
+      (err) => {
+        console.log('所有实例请求错误的拦截')
+        return err
+      }
     )
   }
   request(config: AxiosRequestConfig) {
