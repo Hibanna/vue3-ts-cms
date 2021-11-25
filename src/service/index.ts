@@ -1,29 +1,31 @@
+// service统一出口
 import HYRequest from './request'
 import { BASE_URL, TIME_OUT } from './request/config'
 
-export const HYRequest1 = new HYRequest({
-  baseURL: BASE_URL,
-  timeout: TIME_OUT
-})
-export default new HYRequest({
+// import localCache from '@/utils/cache'
+
+const hyRequest = new HYRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
-    HYRequestInterceptor: (config) => {
-      console.log('实例的请求拦截')
+    requestInterceptor: (config) => {
+      // 携带token的拦截
+      // const token = localCache.getCache('token')
+      // if (token) {
+      //   config.headers.Authorization = `Bearer ${token}`
+      // }
       return config
     },
-    HYRequestInterceptorCatch: (error) => {
-      console.log('实例的请求错误拦截')
-      return error
+    requestInterceptorCatch: (err) => {
+      return err
     },
-    HYResponseInterceptor: (config) => {
-      console.log('实例的响应拦截')
-      return config
+    responseInterceptor: (res) => {
+      return res
     },
-    HYResponseInterceptorCatch: (error) => {
-      console.log('实例的响应错误拦截')
-      return error
+    responseInterceptorCatch: (err) => {
+      return err
     }
   }
 })
+
+export default hyRequest
