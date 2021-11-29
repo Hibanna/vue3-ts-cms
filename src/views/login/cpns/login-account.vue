@@ -1,10 +1,10 @@
 <template>
   <div class="loginAccount">
-    <el-form label-width="60px">
-      <el-form-item label="账号">
+    <el-form label-width="80px" :rules="rules" :model="account">
+      <el-form-item label="账号" prop="name">
         <el-input v-model="account.name" />
       </el-form-item>
-      <el-form-item label="密码">
+      <el-form-item label="密码" prop="password">
         <el-input v-model="account.password" />
       </el-form-item>
     </el-form>
@@ -12,6 +12,8 @@
 </template>
 
 <script lang="ts">
+import { rules } from '../config/account-config'
+
 import { defineComponent, reactive } from 'vue'
 
 export default defineComponent({
@@ -20,8 +22,13 @@ export default defineComponent({
       name: '',
       password: ''
     })
+    const loginAction = () => {
+      console.log('账号登录')
+    }
     return {
-      account
+      account,
+      rules,
+      loginAction
     }
   }
 })
