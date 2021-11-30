@@ -35,7 +35,7 @@ export default defineComponent({
     const isKeep = ref(true)
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
     const loginBtnClick = () => {
-      accountRef.value?.loginAction()
+      accountRef.value?.loginAction(isKeep.value)
     }
     return {
       isKeep,
