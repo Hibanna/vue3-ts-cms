@@ -1,6 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore, Store, useStore as useVuexStore } from 'vuex'
 import loginModule from './login/login'
-import { IRootState } from './types'
+import { IRootState, IStoreType } from './types'
 
 const store = createStore<IRootState>({
   state: () => {
@@ -17,6 +17,10 @@ const store = createStore<IRootState>({
   }
 })
 export function setupStore() {
-  store.dispatch('login/loadLocalLogin')
+  store.dispatch('loginModule/loadLocalLogin')
+}
+
+export function useStore(): Store<IStoreType> {
+  return useVuexStore()
 }
 export default store
