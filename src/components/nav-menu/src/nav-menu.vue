@@ -20,7 +20,10 @@
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleItemClick(subitem)"
+              >
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
@@ -41,6 +44,7 @@
 <script lang="ts">
 import { useStore } from '@/store'
 import { defineComponent, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   props: {
@@ -51,9 +55,16 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
     const userMenus = computed(() => store.state.loginModule.userMenus)
+    const handleItemClick = (item: any) => {
+      router.push({
+        path: item.url ?? '/not-found'
+      })
+    }
     return {
-      userMenus
+      userMenus,
+      handleItemClick
     }
   }
 })

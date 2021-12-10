@@ -15,6 +15,11 @@ const routes: RouteRecordRaw[] = [
     path: '/main',
     name: 'main',
     component: () => import('@/views/main/main.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 
@@ -23,7 +28,6 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 router.beforeEach((to) => {
-  console.log(to.path)
   if (to.path !== '/login') {
     const token = localCache.getCache('token')
     if (!token) {
