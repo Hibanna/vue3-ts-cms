@@ -5,7 +5,7 @@
       <span v-if="!collapse" class="title"> van+ts</span>
     </div>
     <el-menu
-      default-active="2"
+      :default-active="defaultValue"
       class="el-menu-vertical"
       background-color="#0c2135"
       text-color="#b7bdc3"
@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { useStore } from '@/store'
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -62,8 +62,10 @@ export default defineComponent({
         path: item.url ?? '/not-found'
       })
     }
+    const defaultValue = ref('2')
     return {
       userMenus,
+      defaultValue,
       handleItemClick
     }
   }
