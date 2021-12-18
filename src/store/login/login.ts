@@ -33,7 +33,6 @@ const loginModule: Module<ILoginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
-      console.log(router)
     }
   },
   actions: {

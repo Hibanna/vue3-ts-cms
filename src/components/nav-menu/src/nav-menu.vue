@@ -44,8 +44,8 @@
 <script lang="ts">
 import { useStore } from '@/store'
 import { defineComponent, computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
-
+import { useRouter, useRoute } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menus'
 export default defineComponent({
   props: {
     collapse: {
@@ -57,12 +57,17 @@ export default defineComponent({
     const store = useStore()
     const router = useRouter()
     const userMenus = computed(() => store.state.loginModule.userMenus)
+    const route = useRoute()
+    const currentPath = route.path
+
+    const menu = pathMapToMenu(userMenus.value, currentPath)
+
     const handleItemClick = (item: any) => {
       router.push({
         path: item.url ?? '/not-found'
       })
     }
-    const defaultValue = ref('2')
+    const defaultValue = ref(menu.id + '')
     return {
       userMenus,
       defaultValue,

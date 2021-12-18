@@ -6,7 +6,7 @@
       @click="handleFold"
     ></i>
     <div class="content">
-      <div>面包</div>
+      <nav-breadcrumb :breadcrumbs="breadcrumbs"/>
       <user-info />
     </div>
   </div>
@@ -15,22 +15,28 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import userInfo from './user-info.vue'
+import navBreadcrumb from '@/base-ui/breadcrumb'
+import { IBreadCrumb} from '@/base-ui/breadcrumb/types'
 export default defineComponent({
   emits: ['foldChange'],
+
   setup(props, { emit }) {
     const isFold = ref(false)
     const handleFold = () => {
       isFold.value = !isFold.value
       emit('foldChange', isFold.value)
     }
+    const breadcrumbs :IBreadCrumb[] = []
 
     return {
       isFold,
-      handleFold
+      handleFold,
+      breadcrumbs
     }
   },
   components: {
-    userInfo
+    userInfo,
+    navBreadcrumb
   }
 })
 </script>
