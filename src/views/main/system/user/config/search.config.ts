@@ -2,18 +2,21 @@ import { IForm } from '@/base-ui/form/types'
 export const form: IForm = {
   formItems: [
     {
+      field: 'name',
       type: 'input',
       label: '用户名',
       rules: [],
       placeholder: '请输入用户名！'
     },
     {
+      field: 'password',
       type: 'password',
       label: '密码',
       rules: [],
       placeholder: '请输入密码！'
     },
     {
+      field: 'sport',
       type: 'select',
       label: '喜欢的远动',
       rules: [],
@@ -24,6 +27,7 @@ export const form: IForm = {
       ]
     },
     {
+      field: 'createTime',
       type: 'datepicker',
       label: '创建时间',
       rules: [],

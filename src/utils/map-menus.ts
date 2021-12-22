@@ -1,3 +1,4 @@
+import { IBreadCrumb } from '@/base-ui/breadcrumb/types'
 import { RouteRecordRaw } from 'vue-router'
 let firstMenu: any = null
 export default function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
@@ -28,11 +29,23 @@ export default function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
   return routes
 }
 
-export function pathMapToMenu(userMenus: any[], currentPath: string): any {
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string): any {
+  const breadcrumbs: IBreadCrumb[] = []
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
+}
+
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadCrumb[]
+): any {
   for (const menu of userMenus) {
     if (menu.type === 1) {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       if (findMenu) {
+        breadcrumbs?.push({ name: menu.name })
+        breadcrumbs?.push({ name: findMenu.name })
         return findMenu
       }
     } else if (menu.type === 2 && menu.url === currentPath) {
@@ -40,5 +53,34 @@ export function pathMapToMenu(userMenus: any[], currentPath: string): any {
     }
   }
 }
+
+// export function pathMapBreadcrumbs(userMenus: any[], currentPath: string): any {
+//   const breadcrumbs : IBreadCrumb[] = []
+//   for (const menu of userMenus) {
+//     if (menu.type === 1) {
+//       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+//       if (findMenu) {
+//         breadcrumbs.push({name : menu.name,path : menu.url})
+//         breadcrumbs.push({name : findMenu.name,path : findMenu.url})
+//         return breadcrumbs
+//       }
+//     } else if (menu.type === 2 && menu.url === currentPath) {
+//       return menu
+//     }
+//   }
+// }
+
+// export function pathMapToMenu(userMenus: any[], currentPath: string): any {
+//   for (const menu of userMenus) {
+//     if (menu.type === 1) {
+//       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+//       if (findMenu) {
+//         return findMenu
+//       }
+//     } else if (menu.type === 2 && menu.url === currentPath) {
+//       return menu
+//     }
+//   }
+// }
 
 export { firstMenu }
