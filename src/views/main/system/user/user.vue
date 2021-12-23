@@ -1,7 +1,11 @@
 <template>
   <div class="user">
     <div class="search">
-      <hy-from v-bind="form" :formData="formData" />
+      <hy-from v-bind="form" :formData="formData" >
+        <template #header>
+          <h1>高级检索</h1>
+        </template>
+      </hy-from>
     </div>
     <div class="content">content</div>
   </div>
