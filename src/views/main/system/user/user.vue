@@ -1,36 +1,23 @@
 <template>
   <div class="user">
-    <div class="search">
-      <hy-from v-bind="form" :formData="formData" >
-        <template #header>
-          <h1>高级检索</h1>
-        </template>
-      </hy-from>
-    </div>
-    <div class="content">content</div>
+    <div class="search"></div>
+    <page-search :searchConfig="searchConfig" />
+    <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import hyFrom from '@/base-ui/form/src/form.vue'
-import { form } from '@/views/main/system/user/config/search.config'
+import { defineComponent } from 'vue'
+
+import { searchConfig } from '@/views/main/system/user/config/search.config'
+import pageSearch from '@/components/page-search/src/page-search.vue'
 export default defineComponent({
   name: 'user',
+  components: { pageSearch },
   setup() {
-    const formData = reactive({
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
     return {
-      form,
-      formData
+      searchConfig
     }
-  },
-  components: {
-    hyFrom
   }
 })
 </script>

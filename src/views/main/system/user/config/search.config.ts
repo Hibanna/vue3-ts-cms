@@ -1,5 +1,5 @@
 import { IForm } from '@/base-ui/form/types'
-export const form: IForm = {
+export const searchConfig: IForm = {
   formItems: [
     {
       field: 'name',
