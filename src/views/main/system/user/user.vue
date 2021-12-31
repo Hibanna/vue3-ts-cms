@@ -10,7 +10,7 @@
 import { defineComponent } from 'vue'
 
 import { searchConfig } from '@/views/main/system/user/config/search.config'
-import pageSearch from '@/components/page-search/src/page-search.vue'
+import pageSearch from '@/components/page-search/'
 export default defineComponent({
   name: 'user',
   components: { pageSearch },
