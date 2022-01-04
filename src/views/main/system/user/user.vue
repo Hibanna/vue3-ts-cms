@@ -11,10 +11,13 @@ import { defineComponent } from 'vue'
 
 import { searchConfig } from '@/views/main/system/user/config/search.config'
 import pageSearch from '@/components/page-search/'
+import { useStore } from '@/store'
 export default defineComponent({
   name: 'user',
   components: { pageSearch },
   setup() {
+    const store = useStore()
+    store.dispatch('sgetPageListAction')
     return {
       searchConfig
     }

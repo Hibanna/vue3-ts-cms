@@ -3,6 +3,7 @@ import { Module } from 'vuex'
 import { ISystemState } from './types'
 
 const systemModule: Module<ISystemState, IRootState> = {
+  namespaced : true,
   state() {
     return {
       userList: [],
@@ -11,7 +12,7 @@ const systemModule: Module<ISystemState, IRootState> = {
   },
   actions: {
     getPageListAction({ commit }, payload: any) {
-      return
+      console.log(payload)
     }
   }
 }
