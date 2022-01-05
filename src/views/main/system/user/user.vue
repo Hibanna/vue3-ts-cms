@@ -17,7 +17,7 @@ export default defineComponent({
   components: { pageSearch },
   setup() {
     const store = useStore()
-    store.dispatch('sgetPageListAction')
+    store.dispatch('getPageListAction')
     return {
       searchConfig
     }
