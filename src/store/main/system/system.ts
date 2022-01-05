@@ -3,7 +3,7 @@ import { Module } from 'vuex'
 import { ISystemState } from './types'
 
 const systemModule: Module<ISystemState, IRootState> = {
-  namespaced : true,
+  namespaced: true,
   state() {
     return {
       userList: [],
