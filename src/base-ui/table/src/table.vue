@@ -4,7 +4,7 @@
       <template v-for="prop in propList" :key="prop.prop">
         <el-table-column v-bind="prop" align="center">
           <template #default="scope">
-            <slot :name="scope.slotName">
+            <slot :name="prop.slotName" :row="scope.row">
               {{ scope.row[prop.prop] }}
             </slot></template
           >
