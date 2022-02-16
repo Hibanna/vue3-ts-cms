@@ -4,6 +4,7 @@
     <page-search :searchConfig="searchConfig" />
     <div class="content">
       <myTable
+        :title="title"
         :listData="userList"
         :propList="propList"
         :showIndex="showIndex"
@@ -57,6 +58,7 @@ export default defineComponent({
     })
 
     const userList = computed(() => store.state.systemModule.userList)
+    const title = '用户列表'
     const userCount = store.state.systemModule.userCount
     const showIndex = true
     const showSelect = true
@@ -87,6 +89,7 @@ export default defineComponent({
       console.log(value)
     }
     return {
+      title,
       searchConfig,
       userList,
       propList,
