@@ -11,5 +11,6 @@ import { globalRegister } from './global'
 const app = createApp(App)
 setupStore()
 app.use(globalRegister)
-app.use(router).use(store).use(ElementPlus)
+app.use(router).use(store)
+app.use(ElementPlus)
 app.mount('#app')

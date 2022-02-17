@@ -3,6 +3,7 @@
     <div class="header">
       <slot name="header">
         <div class="title">{{ title }}</div>
+        <div class="handler"><slot name="headerHandler"></slot></div>
       </slot>
     </div>
     <el-table
@@ -35,7 +36,18 @@
       </template>
     </el-table>
     <div class="footer">
-      <slot name="footer"></slot>
+      <slot name="footer">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400"
+        >
+        </el-pagination>
+      </slot>
     </div>
   </div>
 </template>
