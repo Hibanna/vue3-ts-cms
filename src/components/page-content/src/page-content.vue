@@ -32,16 +32,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { computed, defineComponent } from 'vue'
+import { useStore } from '@/store'
+import myTable from '@/base-ui/table/src/table.vue'
 export default defineComponent({
   props: {
-    contentTableConfig: { type: Object, require: true }
+    contentTableConfig: { type: Object, require: true },
+    pageName: { type: String, require: true }
   },
-  setup() {
-    return {}
+  components: { myTable },
+  setup(props) {
+    const store = useStore()
+    store.dispatch('systemModule/getPageListAction', {
+      pageName: props.pageName,
+      queryInfo: {
+        offset: 0,
+        size: 10
+      }
+    })
+
+    const userList = computed(() => store.state.systemModule.userList)
+    return { userList }
   }
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.page-content {
+  padding: 20px;
+  border-top: 20px solid #f5f5f5;
+}
+</style>
